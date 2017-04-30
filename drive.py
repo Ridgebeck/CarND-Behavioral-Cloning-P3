@@ -44,7 +44,7 @@ class SimplePIController:
 
 
 controller = SimplePIController(0.1, 0.002)
-set_speed = 9
+set_speed = 30
 controller.set_desired(set_speed)
 
 
@@ -60,12 +60,18 @@ def telemetry(sid, data):
         # The current image from the center camera of the car
         imgString = data["image"]
         image = Image.open(BytesIO(base64.b64decode(imgString)))
+        # Pre-Process Image
+        image, measurement = ip.pre_process(image, 1, False)
         image_array = np.asarray(image)
+
+        # Let the model predict the steering angle
         steering_angle = float(model.predict(image_array[None, :, :, :], batch_size=1))
 
-        throttle = controller.update(float(speed))
+        # Throttle changed to constant
+        #throttle = controller.update(float(speed))
+        throttle = 0.4
 
-        print(steering_angle, throttle)
+        print("Angle: {} and Throttle: {}".format(steering_angle, throttle))
         send_control(steering_angle, throttle)
 
         # save frame
