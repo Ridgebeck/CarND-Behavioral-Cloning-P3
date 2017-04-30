@@ -87,7 +87,7 @@ from pathlib import Path
 if Path("model.h5").is_file():
     print ("Existing model found...Loading Model.")
     model = load_model("model.h5")
-else   
+else: 
     # New Model - model based on NVIDIA's DAVE-2
     model = Sequential()
     
