@@ -5,13 +5,11 @@ import numpy as np
 def pre_process(image, measurement, training):
 
     if training == True:
-        """
         # Add random brightness / darkness
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         brightness = random.uniform(0.5, 1.0)
         hsv[:,:,2] = brightness * hsv[:,:,2]
         image = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
-        """
         
         # Flip 50% of the images and steering angles to avoid bias in one direction
         if np.random.rand() > 0.5: 
@@ -25,15 +23,16 @@ def pre_process(image, measurement, training):
         image = cv2.warpAffine(image, rotation_matrix, (num_cols, num_rows))
 
     # Apply mask
-    mask = cv2.imread('mask.png',0)
-    image = cv2.bitwise_and(image,image,mask = mask)
+    #mask = cv2.imread('mask.png',0)
+    #image = cv2.bitwise_and(image,image,mask = mask)
+    
     # Crop
     image = image[60:140, 6:314]
     # Resize
     image = cv2.resize(image, (80, 80))
 
     # Convert to YUV
-    #image = cv2.cvtColor(image, cv2.COLOR_BGR2YUV)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2YUV)
     # Enhance Contrast
     #image[:,:,0] = cv2.equalizeHist(image[:,:,0])
 

@@ -25,7 +25,7 @@ for line in lines:
     image = cv2.imread(current_path)
     measurement = float(line[3])
     image, measurement = ip.pre_process(image, measurement, False)
-    cv2.imshow(filename, image)
+    #cv2.imshow(filename, image)
     images.append(image)
     measurements.append(measurement)
 
