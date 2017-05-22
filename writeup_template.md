@@ -28,20 +28,21 @@
 #### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
-* model.py containing the script to create and train the model
+* clone.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
-* writeup_report.md or writeup_report.pdf summarizing the results
+* writeup_report.md summarizing the results
 
 #### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
 ```
+My model currently has a problem to consistently drive around the track and I don't know why. I used a model similiar to the Nvidia Dave-2 Model and gave it 40,000 images to train on. Even with image augmentation it was not able to generalize enough in order to drive consistantly around the course.
 
 #### 3. Submission code is usable and readable
 
-The model.py file contains the code for training and saving the convolution neural network. The file shows image preprocessing steps, the pipeline for training and validating the model, and it contains comments to explain how the code works.
+The clone.py file contains the code for training and saving the convolution neural network. It shows the pipeline for training and validating the model and it contains comments to explain how the code works. The image_preprocessing.py file shows image preprocessing steps.
 
 ### Model Architecture and Training Strategy
 
@@ -99,52 +100,20 @@ See *2.* above.
 
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
-
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
-
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
-
-To combat the overfitting, I modified the model so that ...
-
-Then I ... 
-
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
-
-At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
+The overall strategy for deriving a model architecture was to start with a simple model and test the learning process with preprocessed data. After the image preprocessing was completed I moved towards more complex architecture that took a lot longer to train. I tried LeNet and achieved decent results and moved to the Nvidia Dave-2 architecture in the end.
 
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
-
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+The final model is based on the Nvidia Dave-2 Network and consists of 5 convolutional layers and 4 fully connected layers. For a more detailed description. Here is a visualization of the architecture:
 
 ![alt text][image1]
 
-####3. Creation of the Training Set & Training Process
+#### 3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+To capture good driving behavior, I first recorded two laps counter-clockwise on track one using center lane driving. In order to get a higher resolution on the steering angle I used the mouse to control the car. Then I recorded two laps with the same technique going the other way (clockwise) and saved the data in a separate file. Because the course is mostly straight and in order to avoid a bias towards steering straight I recorded three rounds in each direction only driving through the curvy sections of the course.
 
+The steps for data augmentation are described in _Attempts to reduce overfitting in the model_.
 
+I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
-
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
-
-Then I repeated this process on track two in order to get more data points.
-
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
-
-![alt text][image6]
-![alt text][image7]
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
-
-
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
-
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. I used an adam optimizer so that manually training the learning rate wasn't necessary.
