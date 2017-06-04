@@ -13,8 +13,9 @@
 [image5]: ./Writeup/data_distribution/steering_angle_1_track_3_cameras.png "Three Cameras"
 [image6]: ./Writeup/image_processing/original_pic.png "Original Picture"
 [image7]: ./Writeup/image_processing/cropped_pic.png "Cropped Picture"
-[image8]: ./Writeup/image_processing/brightness_pic.png "Random Brightness"
+[image8]: ./Writeup/image_processing/flipped_pic.png "Flipped Picture"
 [image9]: ./Writeup/final_model_architecture.JPG "Final Model Architecture"
+[image10]: ./Writeup/image_processing/modified_pic.png "Modified Picture"
 
 
 
@@ -78,15 +79,13 @@ The image was cropped to remove the details on the horizon and the hood of the c
 
 ![alt text][image7]
 
-In order to allow faster training the image was also resized to 80 x 80 pixels. The image data was also randomly adjusted in brightness and randomly rotated in order to create "new data" every time the model was fed with the same original images.
+In order to avoid bias into one direction 50% of the images of the traning set (chosen randomly) were flipped horizontally.
 
 ![alt text][image8]
 
-I also applied a mask over the center section of the road in order to let the algorithm focus more on the sides of the picture and the curvature of the street. 
+I also added some random rotation and shifts as well as a random adjustment of brightness in order to help the model to generalize better. 
 
-
-
-The model was trained and validated on different data sets to ensure that the model was not overfitting.
+![alt text][image10]
 
 #### 3. Model parameter tuning
 
