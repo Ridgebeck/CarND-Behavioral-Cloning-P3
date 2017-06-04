@@ -31,15 +31,16 @@
 My project includes the following files:
 * clone.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
+* image_preprocessing.py contains the augmentation of the testing set data
 * model.h5 containing a trained convolution neural network 
 * writeup_report.md summarizing the results
+* recording_track_1.mp4 shows a video of the model on the first track
 
 #### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
 ```
-My model currently has a problem to consistently drive around the track and I don't know why. I used a model similiar to the Nvidia Dave-2 Model and gave it 40,000 images to train on. Even with image augmentation it was not able to generalize enough in order to drive consistantly around the course.
 
 #### 3. Submission code is usable and readable
 
@@ -103,9 +104,11 @@ The overall strategy for deriving a model architecture was to start with a simpl
 
 #### 2. Final Model Architecture
 
-The final model is based on the Nvidia Dave-2 network and consists of 5 convolutional layers and 4 fully connected layers. I added a dropout layer after the convolutional layers to prevent overfitting and to make the model more robust. Here is a visualization of the architecture of the Nvidia network as well as the summary of the neural network in keras:
+The final model is based on the Nvidia Dave-2 network and consists of 5 convolutional layers and 4 fully connected layers. I added a dropout layer after the convolutional layers to prevent overfitting and to make the model more robust. Here is a visualization of the architecture of the Nvidia network:
 
 ![alt text][image1]
+
+...and here you can see my implementation in keras:
 
 ![alt text][image9]
 
