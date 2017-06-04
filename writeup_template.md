@@ -14,7 +14,7 @@
 [image6]: ./Writeup/image_processing/original_pic.png "Original Picture"
 [image7]: ./Writeup/image_processing/cropped_pic.png "Cropped Picture"
 [image8]: ./Writeup/image_processing/brightness_pic.png "Random Brightness"
-[image9]: ./Writeup/image_processing/mask_pic.png "Masked Picture"
+[image9]: ./Writeup/final_model_architecture.JPG "Final Model Architecture"
 
 
 
@@ -84,7 +84,7 @@ In order to allow faster training the image was also resized to 80 x 80 pixels. 
 
 I also applied a mask over the center section of the road in order to let the algorithm focus more on the sides of the picture and the curvature of the street. 
 
-![alt text][image9]
+
 
 The model was trained and validated on different data sets to ensure that the model was not overfitting.
 
@@ -104,9 +104,11 @@ The overall strategy for deriving a model architecture was to start with a simpl
 
 #### 2. Final Model Architecture
 
-The final model is based on the Nvidia Dave-2 Network and consists of 5 convolutional layers and 4 fully connected layers. For a more detailed description. Here is a visualization of the architecture:
+The final model is based on the Nvidia Dave-2 network and consists of 5 convolutional layers and 4 fully connected layers. I added a dropout layer after the convolutional layers to prevent overfitting and to make the model more robust. Here is a visualization of the architecture of the Nvidia network as well as the summary of the neural network in keras:
 
 ![alt text][image1]
+
+![alt text][image9]
 
 #### 3. Creation of the Training Set & Training Process
 
